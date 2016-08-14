@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var crypto = require('crypto');
 var cors = require('cors');
+var showdown = require('showdown');
 var posts = {};
 var postProto = {
   id: "",
@@ -52,11 +53,11 @@ router.get('/1/post/:id', function(req, res, next) {
 router.post('/1/post', function(req, res, next) {
   var title = req.body.title;
   var content = req.body.content;
-
+  var converter = new showdown.Converter();
   var doc = {
     subject: title,
     body: content,
-    html: 
+    html: converter.makeHtml(content),
     userCreated: {
       id: req.user.id,
       user: req.user.username
