@@ -56,6 +56,7 @@ router.post('/1/post', function(req, res, next) {
   var doc = {
     subject: title,
     body: content,
+    html: 
     userCreated: {
       id: req.user.id,
       user: req.user.username
