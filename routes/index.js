@@ -28,6 +28,7 @@ function ensureAuthenticated(req, res, next) {
 
 //need login
 router.get('/1/post', ensureAuthenticated);
+
 router.get('/1/post', cors());
 
 router.get('/1/post', function(req, res, next) {
@@ -80,13 +81,27 @@ router.put('/1/post/:id', function(req, res, next) {
 
   res.send(posts);
 });
-// 刪除指定文章(ID)
-router.delete('/1/post/:id', function(req, res, next) {
-  delete posts[req.params.id];
-  res.send({
-    status: 'OK'
+
+
+/**
+ * lik
+ e one post by ID
+ */
+router.get('/1/post/:id/like', ensureAuthenticated);
+router.put('/1/post/:id/like', function(req, res, next) {
+  var id = req.params.id;
+  var conditions = {
+    _id: id
+  };
+  var fieldsToSet = {
+    $push: { likes: req.params.id }
+  };
+  req.app.db.models.Post.findOneAndUpdate(conditions, fieldsToSet, function (err, post) {
+    res.send(post);
   });
 });
+
+
 
 
 
