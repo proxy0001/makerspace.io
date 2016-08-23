@@ -134,11 +134,31 @@ router.post('/1/post', function(req, res, next) {
 
     new req.app.db.models.Post(doc).save(function (err) {
       if (err) return res.send(err);
-      return res.send(doc);
+      res.send(doc);
+      return workflow.emit('notify');
     });
     
   });
   
+  workflow.on('notify', function () {
+    var WebSocketClient = require('websocket').client;
+    var client = new WebSocketClient();
+
+    client.on('connectFailed', function (err) {
+      console.log('Connect Error: ' + err.toString());
+    });
+
+    client.on('connect', function (connection) {
+      console.log('WebSocket Client Connected');
+      connection.sendUTF(JSON.stringify({
+        command: 'UPDATE'
+      }));
+    });
+
+    client.connect('ws://localhost:8080/', 'echo-protocol');
+
+  });
+
   return workflow.emit('validate');
 });
 

@@ -45,7 +45,8 @@ app.FormView = Backbone.View.extend({
             content: content
         }, { 
             success: function(model, response, options) {
-                app.contentView.model.fetch();
+                model.fetch();
+                alert('Data save success.');
             }
         });
     }
