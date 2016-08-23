@@ -155,7 +155,7 @@ router.post('/1/post', function(req, res, next) {
       }));
     });
 
-    client.connect('wss://localhost:8080/', 'echo-protocol');
+    client.connect('ws://localhost:8080/', 'echo-protocol');
 
   });
 
