@@ -24,6 +24,7 @@
     "express-session": "1.x.x",
     "helmet": "2.x.x",
     "jade": "1.x.x",
+    "memcached": "^2.2.2",
     "method-override": "2.x.x",
     "mongoose": "4.x.x",
     "morgan": "1.x.x",
