@@ -24,6 +24,7 @@
     "express-session": "1.x.x",
     "helmet": "2.x.x",
     "jade": "1.x.x",
+    "memcached": "^2.2.2",
     "method-override": "2.x.x",
     "mongoose": "4.x.x",
     "morgan": "1.x.x",
@@ -36,7 +37,9 @@
     "passport-tumblr": "0.1.x",
     "passport-twitter": "1.x.x",
     "serve-static": "1.10.x",
-    "underscore": "1.x.x"
+    "showdown": "^1.4.2",
+    "underscore": "1.x.x",
+    "websocket": "^1.0.23"
   },
   "devDependencies": {
     "backbone": "1.x.x",
